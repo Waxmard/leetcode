@@ -3,25 +3,18 @@ from leetcode_imports import *
 
 def attempt(s: str) -> int:
     max_len = 0
+    char_index_map = {}  # {char, index}
+    a = 0
 
-    current_chars = set()
-    substr = ""
-    for char in s:
-        if char in current_chars:
-            max_len = max(max_len, len(substr))
+    for i, char in enumerate(s):
+        # repeat char, slide window 1 to the right
+        if char in char_index_map and char_index_map[char] >= a:
+            a = char_index_map[char] + 1
 
-            # slice off repeated substring
-            repeat_index = substr.find(char)
-            for i in range(repeat_index + 1):
-                current_chars.remove(substr[i])
-            substr = substr[repeat_index + 1 : len(substr)]
+        char_index_map[char] = i
 
-        current_chars.add(char)
-        substr += char
-
-    # last substring has not reset so attempt to update max
-    max_len = max(max_len, len(substr))
-
+        # update with previous max vs current window length
+        max_len = max(max_len, i - a + 1)
     return max_len
 
 
