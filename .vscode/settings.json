@@ -1,0 +1,20 @@
+{
+    "[markdown]":{
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+    },
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+            "source.fixAll": true
+        },
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    "autopep8.args": [
+        "ignore=S501"
+    ],
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportUndefinedVariable": "none"
+    }
+}
